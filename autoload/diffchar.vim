@@ -60,10 +60,8 @@ function! s:SetDiffCharHL() abort
 		let dh.id = id
 		" 0: original, 1: for single color, 2: for multi color
 		let dh.0 = filter(at, '!empty(v:val)')
-		let dh.1 = (hl == 'DiffChange' || hl == 'DiffText') ?
-									\filter(copy(at), 'v:key =~ "bg$"') : dh.0
-		let dh.2 = (hl == 'DiffChange') ? dh.1 :
-											\(hl == 'DiffText') ? {} : dh.0
+		let dh.1 = (hl == 'DiffText') ? {} : dh.0
+		let dh.2 = dh.1
 		let s:DiffHL[hl] = dh
 	endfor
 	" adjust id to be equal to diff_hlID() in nvim
